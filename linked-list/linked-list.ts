@@ -14,7 +14,7 @@ export class LinkedList<T = any> {
             this.head = newNode
             this.tail = newNode
         } else {
-            this.tail!.next = newNode
+            this.tail.next = newNode
             this.tail = newNode
         }
         this.length++
@@ -28,18 +28,18 @@ export class LinkedList<T = any> {
         if (this.length === 1) {
             const temp = this.tail
             this.emptyList()
-            return temp!
+            return temp
         }
         let temp = this.head
         let pre = this.head
-        while (temp!.next) {
+        while (temp.next) {
             pre = temp
-            temp = temp!.next
+            temp = temp.next
         }
         this.tail = pre
-        this.tail!.next = null
+        this.tail.next = null
         this.length--
-        return temp!
+        return temp
     }
 
     unshift(value: T): this {
@@ -62,13 +62,13 @@ export class LinkedList<T = any> {
         if (this.length === 1) {
             const temp = this.tail
             this.emptyList()
-            return temp!
+            return temp
         }
         const temp = this.head
-        this.head = this.head!.next
+        this.head = this.head.next
         temp.next = null
         this.length--
-        return temp!
+        return temp
     }
 
     private emptyList(): void {
