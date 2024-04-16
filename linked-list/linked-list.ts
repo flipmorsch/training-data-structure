@@ -23,7 +23,7 @@ export class LinkedList<T = any> {
 
     pop(): Node {
         if (this.length === 0) {
-            throw new Error('The list is empty')
+            throw new Error('LinkedList::pop -> The list is empty')
         }
         if (this.length === 1) {
             const temp = this.tail
@@ -57,7 +57,7 @@ export class LinkedList<T = any> {
 
     shift(): Node {
         if (this.length === 0) {
-            throw new Error('The list is empty')
+            throw new Error('LinkedList::shift -> The list is empty')
         }
         if (this.length === 1) {
             const temp = this.tail
@@ -73,13 +73,21 @@ export class LinkedList<T = any> {
 
     get(index: number): Node {
         if (index < 0 || index >= this.length) {
-            throw new Error('Invalid index value')
+            throw new Error('LinkedList::get -> Index out of range')
         }
         let temp: Node = this.head
         for (let i = 0; i < index; i++) {
             temp = temp.next
         }
         return temp
+    }
+
+    set(index: number, value: T) {
+        if (this.length === 0) {
+            throw new Error('LinkedList::set -> The list is empty')
+        }
+        let temp = this.get(index)
+        temp.value = value
     }
 
     private emptyList(): void {
