@@ -71,6 +71,17 @@ export class LinkedList<T = any> {
         return temp
     }
 
+    get(index: number): Node {
+        if (index < 0 || index >= this.length) {
+            throw new Error('Invalid index value')
+        }
+        let temp: Node = this.head
+        for (let i = 0; i < index; i++) {
+            temp = temp.next
+        }
+        return temp
+    }
+
     private emptyList(): void {
         this.head = null
         this.tail = null
