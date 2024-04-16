@@ -86,11 +86,3 @@ class Node<T = any> {
         this.next = null
     }
 }
-
-const linked = new LinkedList(30)
-console.log(linked)
-linked.push(20)
-linked.push(10)
-console.log(linked)
-linked.shift()
-console.log(linked)
