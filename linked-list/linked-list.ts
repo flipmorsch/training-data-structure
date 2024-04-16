@@ -42,6 +42,19 @@ export class LinkedList<T = any> {
         return temp!
     }
 
+    unshift(value: T) {
+        const newNode = new Node(value)
+        if (this.length === 0) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            newNode.next = this.head
+            this.head = newNode
+        }
+        this.length++
+        return this
+    }
+
     private emptyList(): void {
         this.head = null
         this.tail = null
@@ -57,3 +70,8 @@ class Node<T = any> {
         this.next = null
     }
 }
+
+const linkedList = new LinkedList(30)
+console.log(linkedList)
+linkedList.unshift(10)
+console.log(linkedList)
