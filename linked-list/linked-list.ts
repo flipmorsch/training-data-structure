@@ -2,7 +2,7 @@ export class LinkedList<T = any> {
     private head: Node<T> | null
     private tail: Node<T> | null
     private length: number
-    constructor(private readonly value: Node<T> | T) {
+    constructor(value: Node<T> | T) {
         this.head = value instanceof Node ? value : new Node<T>(value)
         this.tail = this.head
         this.length = 1
@@ -88,6 +88,20 @@ export class LinkedList<T = any> {
         }
         let temp = this.get(index)
         temp.value = value
+    }
+
+    insert (index: number, value: T) {
+        if (index === 0) return this.unshift(value)
+        if (index === this.length) return this.push(value)
+        if (index < 0 || index >= this.length) {
+            throw new Error('LinkedList::insert -> Index out of range')
+        }
+        const newNode = new Node(value)
+        let temp = this.get(index - 1)
+        newNode.next = temp.next
+        temp.next = newNode
+        this.length++
+        return this
     }
 
     private emptyList(): void {
