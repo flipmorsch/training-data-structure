@@ -55,6 +55,22 @@ export class LinkedList<T = any> {
         return this
     }
 
+    shift(): Node {
+        if (this.length === 0) {
+            throw new Error('The list is empty')
+        }
+        if (this.length === 1) {
+            const temp = this.tail
+            this.emptyList()
+            return temp!
+        }
+        const temp = this.head
+        this.head = this.head!.next
+        temp.next = null
+        this.length--
+        return temp!
+    }
+
     private emptyList(): void {
         this.head = null
         this.tail = null
@@ -70,3 +86,11 @@ class Node<T = any> {
         this.next = null
     }
 }
+
+const linked = new LinkedList(30)
+console.log(linked)
+linked.push(20)
+linked.push(10)
+console.log(linked)
+linked.shift()
+console.log(linked)
