@@ -104,6 +104,20 @@ export class LinkedList<T = any> {
         return this
     }
 
+    remove(index: number): Node {
+        if (index < 0 || index >= this.length) {
+            throw new Error('LinkedList::remove -> Index out of range')
+        }
+        if (index === 0) return this.shift()
+        if (index === this.length - 1) return this.pop()
+        const before = this.get(index - 1)
+        const temp = before.next
+        before.next = temp.next
+        temp.next = null
+        this.length--
+        return temp
+    }
+
     private emptyList(): void {
         this.head = null
         this.tail = null
