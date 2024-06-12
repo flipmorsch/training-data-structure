@@ -8,6 +8,18 @@ export class LinkedList<T = any> {
         this.length = 1
     }
 
+    getLength(): number {
+        return this.length
+    }
+
+    getHead(): Node<T> {
+        return this.head
+    }
+
+    getTail(): Node<T> {
+        return this.tail
+    }
+
     push(value: T): this {
         const newNode = new Node(value)
         if (this.length === 0) {
