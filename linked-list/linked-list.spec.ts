@@ -243,4 +243,44 @@ describe('LinkedList class', () => {
             expect(() => sut.insert(2, 10)).toThrow('LinkedList::insert -> Index out of range')
         })
     })
+
+    describe('remove function tests', () => {
+        test('should remove the Node at the given index', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.remove(2)
+            expect(sut.get(2).value).toEqual(40)
+            expect(sut.get(1).value).toEqual(20)
+        })
+
+        test('should remove the first Node of the LinkedList', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.remove(0)
+            expect(sut.get(0).value).toEqual(20)
+            expect(sut.get(1).value).toEqual(30)
+        })
+
+        test('should remove the last Node of the LinkedList', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.remove(4)
+            expect(sut.get(3).value).toEqual(40)
+            expect(sut.getTail().next).toBeNull()
+        })
+
+        test('should throw an error if the given index is out of bounds', () => {
+            const sut = new LinkedList(10)
+            expect(() => sut.remove(1)).toThrow('LinkedList::remove -> Index out of range')
+        })
+    })
 })
