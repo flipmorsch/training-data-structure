@@ -76,4 +76,35 @@ describe('LinkedList class', () => {
             expect(poppedNode.value).toStrictEqual(20)
         })
     })
+
+    describe('unshift function tests', () => {
+        test('should head and tail have the same value when LinkedList length is 1', () => {
+            const sut = new LinkedList(10)
+            sut.pop()
+            sut.unshift(10)
+            expect(sut.getHead()).toStrictEqual(sut.getTail())
+        })
+
+        test('should update head and tail Nodes', () => {
+            const sut = new LinkedList(10)
+            sut.unshift(20)
+            sut.unshift(30)
+            const head = sut.getHead()
+            const tail = sut.getTail()
+            expect(head.value).toEqual(30)
+            expect(head.next.value).toEqual(20)
+            expect(head.next.next.value).toEqual(10)
+            expect(tail.value).toEqual(10)
+            expect(tail.next).toBeNull()
+        })
+
+        test('should update length after unshift', () => {
+            const sut = new LinkedList(10)
+            expect(sut.getLength()).toEqual(1)
+            sut.push(20)
+            expect(sut.getLength()).toEqual(2)
+            sut.push(30)
+            expect(sut.getLength()).toEqual(3)
+        })
+    })
 })
