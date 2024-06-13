@@ -173,4 +173,27 @@ describe('LinkedList class', () => {
             expect(() => sut.get(1)).toThrow('LinkedList::get -> Index out of range')
         })
     })
+
+    describe('set function tests', () => {
+        test('should update the value of the Node at the given index', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.set(2, 35)
+            expect(sut.get(2).value).toEqual(35)
+        })
+
+        test('should throw an error if the LinkedList is empty', () => {
+            const sut = new LinkedList(10)
+            sut.pop()
+            expect(() => sut.set(0, 10)).toThrow('LinkedList::set -> The list is empty')
+        })
+
+        test('should throw an error if the given index is out of bounds', () => {
+            const sut = new LinkedList(10)
+            expect(() => sut.set(1, 10)).toThrow('LinkedList::get -> Index out of range')
+        })
+    })
 })
