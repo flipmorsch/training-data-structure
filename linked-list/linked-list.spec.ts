@@ -152,4 +152,25 @@ describe('LinkedList class', () => {
             expect(shiftedNode.value).toStrictEqual(10)
         })
     })
+
+    describe('get function tests', () => {
+        test('should return the Node at the given index', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            expect(sut.get(0).value).toEqual(10)
+            expect(sut.get(1).value).toEqual(20)
+            expect(sut.get(2).value).toEqual(30)
+            expect(sut.get(3).value).toEqual(40)
+            expect(sut.get(4).value).toEqual(50)
+
+        })
+
+        test('should return null if the given index is out of bounds', () => {
+            const sut = new LinkedList(10)
+            expect(() => sut.get(1)).toThrow('LinkedList::get -> Index out of range')
+        })
+    })
 })
