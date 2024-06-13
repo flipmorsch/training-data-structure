@@ -1,4 +1,4 @@
-import {LinkedList} from "./linked-list";
+import {LinkedList, Node} from "./linked-list";
 
 describe('LinkedList class', () => {
     describe('push function tests', () => {
@@ -315,6 +315,26 @@ describe('LinkedList class', () => {
             expect(head.next.next.next.next.value).toEqual(10)
             expect(tail.value).toEqual(10)
             expect(tail.next).toBeNull()
+        })
+    })
+
+    describe('constructor tests', () => {
+        test('should instantiate a linked list when head and tail have the same value', () => {
+            const sut = new LinkedList(10)
+            expect(sut.getHead().value).toEqual(10)
+            expect(sut.getTail().value).toEqual(10)
+        })
+
+        test('should have a length of 1', () => {
+            const sut = new LinkedList(10)
+            expect(sut.getLength()).toEqual(1)
+        })
+
+        test('should accept a node as a parameter', () => {
+            const node = new Node(10)
+            const sut = new LinkedList(node)
+            expect(sut.getHead()).toStrictEqual(node)
+            expect(sut.getTail()).toStrictEqual(node)
         })
     })
 })
