@@ -105,7 +105,7 @@ export class LinkedList<T = any> {
     insert (index: number, value: T) {
         if (index === 0) return this.unshift(value)
         if (index === this.length) return this.push(value)
-        if (index < 0 || index >= this.length) {
+        if (index < 0 || index > this.length) {
             throw new Error('LinkedList::insert -> Index out of range')
         }
         const newNode = new Node(value)
