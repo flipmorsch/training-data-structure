@@ -152,7 +152,7 @@ export class LinkedList<T = any> {
     }
 }
 
-class Node<T = any> {
+export class Node<T = any> {
     public value: T
     public next: Node<T> | null
     constructor (value: T) {
