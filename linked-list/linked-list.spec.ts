@@ -196,4 +196,51 @@ describe('LinkedList class', () => {
             expect(() => sut.set(1, 10)).toThrow('LinkedList::get -> Index out of range')
         })
     })
+
+    describe('insert function tests', () => {
+        test('should insert a new Node at the given index', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.insert(2, 25)
+            expect(sut.get(2).value).toEqual(25)
+            expect(sut.get(3).value).toEqual(30)
+        })
+
+        test('should insert a new Node at the beginning of the LinkedList', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.insert(0, 5)
+            expect(sut.get(0).value).toEqual(5)
+            expect(sut.get(1).value).toEqual(10)
+        })
+
+        test('should insert a new Node at the end of the LinkedList', () => {
+            const sut = new LinkedList(10)
+            sut.push(20)
+            sut.push(30)
+            sut.push(40)
+            sut.push(50)
+            sut.insert(5, 55)
+            expect(sut.get(5).value).toEqual(55)
+            expect(sut.get(4).value).toEqual(50)
+        })
+
+        test('should call unshift if linked list is empty', () => {
+            const sut = new LinkedList(10)
+            const spyUnshift = jest.spyOn(sut, 'unshift')
+            sut.insert(0, 10)
+            expect(spyUnshift).toHaveBeenCalledTimes(1)
+        })
+
+        test('should throw an error if the given index is out of bounds', () => {
+            const sut = new LinkedList(10)
+            expect(() => sut.insert(2, 10)).toThrow('LinkedList::insert -> Index out of range')
+        })
+    })
 })
